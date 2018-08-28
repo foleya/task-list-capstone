@@ -19,7 +19,7 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Description</th><th>User</th><th>Complete</th>
+					<th>Description</th><th>User</th><th>Due Date</th><th>Complete</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,6 +27,7 @@
 					<tr>
 						<td><a href="/tasks/${ task.id }">${ task.description }</a></td>
 						<td>${ task.user.name }</td>
+						<td>${ task.dueDate }</td>
 						<td>${ task.complete ? '&#10004' : '&#10060' }</td>
 					</tr>
 				</c:forEach>

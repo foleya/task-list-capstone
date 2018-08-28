@@ -1,10 +1,16 @@
 package co.grandcircus.tasklistapp.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Task {
@@ -17,15 +23,20 @@ public class Task {
 	private User user;
 	
 	private String description;
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dueDate;
 	private Boolean complete;
 	
 	public Task () {}
 
-	public Task(long id, User user, String description, Boolean complete) {
+	public Task(long id, User user, String description, Date dueDate, Boolean complete) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.description = description;
+		this.dueDate = dueDate;
 		this.complete = complete;
 	}
 
@@ -59,6 +70,14 @@ public class Task {
 
 	public void setComplete(Boolean complete) {
 		this.complete = complete;
+	}
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}
 
 	@Override

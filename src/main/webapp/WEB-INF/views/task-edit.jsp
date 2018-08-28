@@ -34,6 +34,11 @@
 			</div>
 			
 			<div class="form-group">
+			    <label for="name">Due Date</label>
+			    <input class="form-control" type="date" id="due-date" name="dueDate" value="${ task.dueDate }" min="2000-01-01" max="2030-12-31">
+			</div>
+			
+			<div class="form-group">
 			    <label for="name">Complete</label>
 			    <input type="checkbox" class="form-control" id="complete" name="complete" value=${ task.complete }>
 			</div>

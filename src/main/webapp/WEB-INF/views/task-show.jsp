@@ -18,17 +18,22 @@
 		
 		<div class="form-group row">
 		    <label for="user" class="col-sm-2 col-form-label">User:</label>
-		    <div class="col-sm-10 mt-2" id="bootcamp">${ task.user.name }</div>
+		    <div class="col-sm-10 mt-2" id="user">${ task.user.name }</div>
 		</div>
 		
 		<div class="form-group row">
 		    <label for="description" class="col-sm-2 col-form-label">Description:</label>
-		    <div class="col-sm-10 mt-2" id="name">${ task.description }</div>
+		    <div class="col-sm-10 mt-2" id="description">${ task.description }</div>
+		</div>
+		
+		<div class="form-group row">
+		    <label for="description" class="col-sm-2 col-form-label">Due Date:</label>
+		    <div class="col-sm-10 mt-2" id="due-date">${ task.dueDate }</div>
 		</div>
 		
 		<div class="form-group row">
 		    <label for="user" class="col-sm-2 col-form-label">Complete:</label>
-		    <div class="col-sm-10 mt-2" id="bootcamp">${ task.complete ? '&#10004' : '&#10060' }</div>
+		    <div class="col-sm-10 mt-2" id="complete">${ task.complete ? '&#10004' : '&#10060' }</div>
 		</div>
 		
 		<a href="/tasks/${ task.id }/edit" class="btn btn-secondary">Edit</a>
