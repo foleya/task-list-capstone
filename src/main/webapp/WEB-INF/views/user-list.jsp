@@ -14,19 +14,19 @@
 <body>
 	<main class="container">
 		<%@include file="partials/header.jsp"%>
-		<h1>Bootcamps</h1>
+		<h1>Users</h1>
 		
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Name</th><th>Instructor</th><th>Students</th>
+					<th>Things</th><th>Things</th><th>Things</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="bootcamp" items="${ bootcamps }">
+				<c:forEach var="user" items="${ users }">
 					<tr>
-						<td><a href="/bootcamps/${ bootcamp.id }">${ bootcamp.name }</a></td>
-						<td>${ bootcamp.instructor }</td>
+						<td><a href="/users/${ user.id }">${ user.name }</a></td>
+						<td>${ user.instructor }</td>
 						<td>${ bootcamp.students.size() }</td>
 					</tr>
 				</c:forEach>
