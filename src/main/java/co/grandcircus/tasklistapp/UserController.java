@@ -22,11 +22,6 @@ public class UserController {
 	@Autowired
 	private TaskDao taskDao;
 
-	@RequestMapping("/")
-	public String home() {
-		return "redirect:/users";
-	}
-
 	@RequestMapping("/users")
 	public ModelAndView listUsers() {
 		ModelAndView mav = new ModelAndView("user-list");

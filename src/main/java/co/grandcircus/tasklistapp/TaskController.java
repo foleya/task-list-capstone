@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.tasklistapp.dao.TaskDao;
 import co.grandcircus.tasklistapp.entity.Task;
@@ -18,30 +19,28 @@ public class TaskController {
 
 	@Autowired
 	private TaskDao taskDao;
-	
-	//TODO: nice rerouting!
-//	@RequestMapping("/secrets")
-//	public ModelAndView index(@SessionAttribute(name="user", required=false) User user, RedirectAttributes redir) {
-//		// For this URL, make sure there is a user on the session.
-//		if (user == null) {
-//			// if not, send them back to the login page with a message.
-//			redir.addFlashAttribute("message", "Wait! Please log in.");
-//			return new ModelAndView("redirect:/login");
-//		}
-//		
-//		// if the user is logged in, proceed as normal.
-//		return new ModelAndView("secrets");
-//	}
 
 	@RequestMapping("/tasks")
-	public ModelAndView listTasks(@SessionAttribute("user") User user) {
+	public ModelAndView listTasks(@SessionAttribute(name="user", required=false) User user, RedirectAttributes redir) {
+		if (user == null) {
+			// if not, send them back to the login page with a message.
+			redir.addFlashAttribute("message", "Wait! Please log in.");
+			return new ModelAndView("redirect:/login");
+		}
+		
 		ModelAndView mav = new ModelAndView("task-list");
-		mav.addObject("tasks", taskDao.findAll());
+		mav.addObject("tasks", taskDao.findByUser(user));
 		return mav;
 	}
 
 	@RequestMapping("/tasks/{id}")
-	public ModelAndView showTask(@PathVariable("id") Task task, @SessionAttribute("user") User user) {
+	public ModelAndView showTask(@PathVariable("id") Task task, @SessionAttribute(name="user", required=false) User user, RedirectAttributes redir) {
+		if (user == null) {
+			// if not, send them back to the login page with a message.
+			redir.addFlashAttribute("message", "Wait! Please log in.");
+			return new ModelAndView("redirect:/login");
+		}
+		
 		ModelAndView mav = new ModelAndView("task-show");
 		mav.addObject("task", task);
 		// mav.addObject("employers", employerDao.findAllByOrderByName());
@@ -49,14 +48,26 @@ public class TaskController {
 	}
 
 	@RequestMapping("/tasks/{id}/edit")
-	public ModelAndView editTask(@PathVariable("id") Task task, @SessionAttribute("user") User user) {
+	public ModelAndView editTask(@PathVariable("id") Task task, @SessionAttribute(name="user", required=false) User user, RedirectAttributes redir) {
+		if (user == null) {
+			// if not, send them back to the login page with a message.
+			redir.addFlashAttribute("message", "Wait! Please log in.");
+			return new ModelAndView("redirect:/login");
+		}
+		
 		ModelAndView mav = new ModelAndView("task-edit");
 		mav.addObject("task", task);
 		return mav;
 	}
 
 	@PostMapping("/tasks/{id}/edit")
-	public ModelAndView submitEditTask(@ModelAttribute("id") Task task, @SessionAttribute("user") User user) {
+	public ModelAndView submitEditTask(@ModelAttribute("id") Task task, @SessionAttribute(name="user", required=false) User user, RedirectAttributes redir) {
+		if (user == null) {
+			// if not, send them back to the login page with a message.
+			redir.addFlashAttribute("message", "Wait! Please log in.");
+			return new ModelAndView("redirect:/login");
+		}
+		
 		task.setUser(user);
 		taskDao.save(task);
 		ModelAndView mav = new ModelAndView("redirect:/tasks/" + task.getId());
@@ -64,13 +75,25 @@ public class TaskController {
 	}
 
 	@RequestMapping("/tasks/add")
-	public ModelAndView addTask(@SessionAttribute("user") User user) {
+	public ModelAndView addTask(@SessionAttribute(name="user", required=false) User user, RedirectAttributes redir) {
+		if (user == null) {
+			// if not, send them back to the login page with a message.
+			redir.addFlashAttribute("message", "Wait! Please log in.");
+			return new ModelAndView("redirect:/login");
+		}
+		
 		ModelAndView mav = new ModelAndView("task-add");
 		return mav;
 	}
 
 	@PostMapping("/tasks/add")
-	public ModelAndView submitAddTask(Task task, @SessionAttribute("user") User user) {
+	public ModelAndView submitAddTask(Task task, @SessionAttribute(name="user", required=false) User user, RedirectAttributes redir) {
+		if (user == null) {
+			// if not, send them back to the login page with a message.
+			redir.addFlashAttribute("message", "Wait! Please log in.");
+			return new ModelAndView("redirect:/login");
+		}
+		
 		task.setUser(user);
 		taskDao.save(task);
 		ModelAndView mav = new ModelAndView("redirect:/tasks");
@@ -78,7 +101,13 @@ public class TaskController {
 	}
 
 	@RequestMapping("/tasks/{id}/delete")
-	public ModelAndView deleteTask(@PathVariable("id") Long id) {
+	public ModelAndView deleteTask(@PathVariable("id") Long id, @SessionAttribute(name="user", required=false) User user, RedirectAttributes redir) {
+		if (user == null) {
+			// if not, send them back to the login page with a message.
+			redir.addFlashAttribute("message", "Wait! Please log in.");
+			return new ModelAndView("redirect:/login");
+		}
+		
 		taskDao.deleteById(id);
 		ModelAndView mav = new ModelAndView("redirect:/tasks");
 		return mav;

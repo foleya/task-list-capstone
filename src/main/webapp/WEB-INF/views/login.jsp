@@ -27,6 +27,7 @@
 	  		<p class="message">${ message }</p>
 			<button class="btn btn-primary btn-lg btn-block">Log In!</button>
 		</form>
+		<a href="/register" class="btn btn-secondary text-white btn-sm my-2 btn-block">Or Register!</a>
 	</div>
 </body>
 </html>

@@ -18,6 +18,12 @@ public class AuthController {
 
 	@Autowired
 	UserDao userDao;
+	
+//	// Index
+//	@RequestMapping("/")
+//	public ModelAndView showHome() {
+//		return new ModelAndView("redirect:/login");
+//	}
 
 	// Registration
 	@RequestMapping("/register")
