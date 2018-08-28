@@ -26,7 +26,7 @@
 				<c:forEach var="task" items="${ tasks }">
 					<tr>
 						<td><a href="/tasks/${ task.id }">${ task.description }</a></td>
-						<td>${ task.user.name }</td>
+						<td>${ task.user.firstName } ${ task.user.lastName }</td>
 						<td>${ task.dueDate }</td>
 						<td>${ task.complete ? '&#10004' : '&#10060' }</td>
 					</tr>

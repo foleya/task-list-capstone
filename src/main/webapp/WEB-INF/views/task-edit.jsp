@@ -18,19 +18,14 @@
 		
 		<!-- A form without an action submits back to the same URL, which is what we want here. -->
 		<form method="post">
+		
 			<div class="form-group">
-			    <label for="user">User</label>
-			    <select class="form-control" id="user" name="user">
-			    	<option value="">- None -</option>
-			    	<c:forEach var="user" items="${ users }">
-			    		<option value="${ user.id }" ${ user.id eq task.user.id ? 'selected' : '' }>${ user.name }</option>
-			    	</c:forEach>
-			    </select>
+			    <input hidden class="form-control" disabled id="user" name="user" value="${ user.id }">
 			</div>
 			
 			<div class="form-group">
 			    <label for="name">Description</label>
-			    <input class="form-control" id="description" name="description" value="${ task.description }" required minlength="2" autocomplete="off">
+			    <input class="form-control" id="description" name="description" required minlength="2" autocomplete="off" value="${ task.description }">
 			</div>
 			
 			<div class="form-group">
@@ -40,8 +35,9 @@
 			
 			<div class="form-group">
 			    <label for="name">Complete</label>
-			    <input type="checkbox" class="form-control" id="complete" name="complete" value=${ task.complete }>
+			    <input type="checkbox" class="form-control" id="complete" name="complete">
 			</div>
+			
 			<button type="submit" class="btn btn-primary">Save</button>
 			<a href="/tasks/${ task.id }" class="btn btn-link">Cancel</a>
 		</form>

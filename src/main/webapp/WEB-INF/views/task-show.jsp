@@ -17,11 +17,6 @@
 		<h1>Task: ${ task.description }</h1>
 		
 		<div class="form-group row">
-		    <label for="user" class="col-sm-2 col-form-label">User:</label>
-		    <div class="col-sm-10 mt-2" id="user">${ task.user.name }</div>
-		</div>
-		
-		<div class="form-group row">
 		    <label for="description" class="col-sm-2 col-form-label">Description:</label>
 		    <div class="col-sm-10 mt-2" id="description">${ task.description }</div>
 		</div>

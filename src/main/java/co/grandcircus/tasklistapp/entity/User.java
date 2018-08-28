@@ -2,6 +2,7 @@ package co.grandcircus.tasklistapp.entity;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +16,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	private String name;
+	private String firstName;
+	private String lastName;
 	private String emailAddress;
+	
+	@Column(length = 255)
 	private String password;
 	
 	@OneToMany(mappedBy="user")
@@ -24,10 +28,11 @@ public class User {
 	
 	public User () {}
 
-	public User(long id, String name, String emailAddress, String password, Set<Task> tasks) {
+	public User(long id, String firstName, String lastName, String emailAddress, String password, Set<Task> tasks) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.emailAddress = emailAddress;
 		this.password = password;
 		this.tasks = tasks;
@@ -41,12 +46,20 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getEmailAddress() {

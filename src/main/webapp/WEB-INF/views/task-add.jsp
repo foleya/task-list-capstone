@@ -16,22 +16,20 @@
 		<%@include file="partials/header.jsp"%>
 		<h1>Add Task</h1>
 		
-		<!-- A form without an action submits back to the same URL, which is what we want here. -->
 		<form method="post">
 			
 			<div class="form-group">
-			    <label for="user">User</label>
-			    <select class="form-control" id="user" name="user">
-			    	<option value="">- None -</option>
-			    	<c:forEach var="user" items="${ users }">
-			    		<option value="${ user.id }">${ user.name }</option>
-			    	</c:forEach>
-			    </select>
+			    <input hidden class="form-control" disabled id="user" name="user" value="${ user.id }">
 			</div>
 			
 			<div class="form-group">
 			    <label for="name">Description</label>
 			    <input class="form-control" id="description" name="description" required minlength="2" autocomplete="off">
+			</div>
+			
+			<div class="form-group">
+			    <label for="name">Due Date</label>
+			    <input class="form-control" type="date" id="due-date" name="dueDate" value="${ task.dueDate }" min="2000-01-01" max="2030-12-31">
 			</div>
 			
 			<div class="form-group">
