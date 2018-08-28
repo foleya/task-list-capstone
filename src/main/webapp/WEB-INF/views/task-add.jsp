@@ -19,7 +19,8 @@
 		<form method="post">
 			
 			<div class="form-group">
-			    <input hidden class="form-control" disabled id="user" name="user" value="${ user.id }">
+				<label for="user">User</label>
+			    <input class="form-control" disabled id="user" value="${ user.firstName } ${ user.lastName }">
 			</div>
 			
 			<div class="form-group">
