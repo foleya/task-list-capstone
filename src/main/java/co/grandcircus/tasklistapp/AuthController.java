@@ -49,7 +49,7 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public ModelAndView submitLoginForm(@RequestParam("emailAddress") String emailAddress,
-			@RequestParam("password") String password, @RequestParam("passwordConfirm") String passwordConfirm,
+			@RequestParam("password") String password,
 			HttpSession session, RedirectAttributes redir) {
 		User user = userDao.findByEmailAddress(emailAddress);
 		if (user == null || !password.equals(user.getPassword())) {
@@ -65,7 +65,7 @@ public class AuthController {
 		// A flash message will only show on the very next page. Then it will go away.
 		// It is useful with redirects since you can't add attributes to the mav.
 		redir.addFlashAttribute("message", "Logged in.");
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/tasks");
 	}
 	
 	@RequestMapping("/logout")
