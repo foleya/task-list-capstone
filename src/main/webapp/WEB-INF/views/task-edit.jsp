@@ -36,7 +36,7 @@
 			
 			<div class="form-group">
 			    <label for="name">Complete</label>
-			    <input type="checkbox" class="form-control" id="complete" name="complete">
+			    <input type="checkbox" class="form-control" id="complete" name="complete" <c:if test="${ task.complete }">checked="checked"</c:if>>
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Save</button>
